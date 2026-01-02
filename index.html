@@ -1,252 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Financial Analysis & Management</title>
-<link rel="icon" href="images/images.png">
-
-<style>
-:root {
-    --primary: #1a3faa;
-    --success: #0a7a3b;
-    --danger: #a40000;
-    --bg: #f4f6f8;
-}
-
-* { box-sizing: border-box; }
-
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: var(--bg);
-    color: #222;
-    margin: 0;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    font-size: 38px;
-}
-
-h2, h3 {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.container {
-    max-width: 1000px;
-    margin: auto;
-}
-
-.day {
-    background: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 12px;
-    display: grid;
-    grid-template-columns: 1fr 2fr 2fr;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.day h4 {
-    margin: 0;
-    text-align: center;
-}
-
-input {
-    width: 110px;
-    padding: 6px;
-    font-size: 16px;
-}
-
-button {
-    padding: 6px 12px;
-    font-size: 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: none;
-    background: var(--primary);
-    color: white;
-}
-
-button.secondary {
-    background: #555;
-}
-
-button:hover { opacity: 0.9; }
-
-.report {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    margin-top: 30px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-}
-
-.summary {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.card {
-    flex: 1;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.income { background: #e8fff0; color: var(--success); }
-.expense { background: #ffecec; color: var(--danger); }
-.profit { background: #eef3ff; color: var(--primary); }
-
-.extras ul {
-    list-style: none;
-    padding: 0;
-}
-
-.extras li {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
-    border-left: 4px solid var(--danger);
-    background: #fafafa;
-    margin-bottom: 6px;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analysis & Management - Home</title>
+    <link rel="icon" href="images/images.svg">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-<div class="container">
-
-<h1>Financial Analysis & Management</h1>
-<hr>
-
-<h2>Weekly Income & Expenses</h2>
-<div id="days"></div>
-
-<h3>Extra Expenses</h3>
-<input type="text" id="extraReason" placeholder="Expense reason">
-<input type="number" id="extraAmount" placeholder="Amount">
-<button onclick="addExtra()">Add</button>
-
-<br><br>
-<button onclick="analyze()">Weekly Analysis</button>
-<button class="secondary" onclick="endWeek()">End Week</button>
-
-<div id="result"></div>
-
-</div>
-
-<script>
-(() => {
-const dayNames = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-const container = document.getElementById("days");
-
-const state = {
-    weekData: JSON.parse(localStorage.getItem("weekData")) || {
-        incomes: Array(7).fill(0),
-        expenses: Array(7).fill(0)
-    },
-    extras: JSON.parse(localStorage.getItem("extrasData")) || {}
-};
-
-// Render days
-dayNames.forEach((day, i) => {
-    container.insertAdjacentHTML("beforeend", `
-        <div class="day">
-            <h4>${day}</h4>
-            <div>
-                Income<br>
-                <input type="number" id="income${i}" value="${state.weekData.incomes[i]}">
-                <button onclick="addIncome(${i})">Add</button>
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">📊</span>
+                    <span>FinTrack</span>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="pages/operating.html" class="nav-link">Operating</a></li>
+                    <li><a href="pages/report.html" class="nav-link">Reports</a></li>
+                    <li><a href="pages/about.html" class="nav-link">About</a></li>
+                    <li><a href="pages/contacts.html" class="nav-link">Contacts</a></li>
+                </ul>
             </div>
-            <div>
-                Expense<br>
-                <input type="number" id="expense${i}" value="${state.weekData.expenses[i]}">
-                <button onclick="addExpense(${i})">Add</button>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Financial Analysis & Management</h1>
+                <p>Take control of your finances with our powerful tracking tools. Monitor income, expenses, and gain insights into your spending patterns.</p>
+                <a href="pages/operating.html" class="btn btn-lg" style="background: rgba(26, 16, 65, 0.734); color: var(--primary);">
+                    🚀 Start Tracking Now
+                </a>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" id="totalIncome">€0</div>
+                        <div class="hero-stat-label">Total Income</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" id="totalExpense">€0</div>
+                        <div class="hero-stat-label">Total Expenses</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" id="totalProfit">€0</div>
+                        <div class="hero-stat-label">Net Profit</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    `);
-});
+        </section>
 
-window.addIncome = i => {
-    const v = Number(document.getElementById(`income${i}`).value);
-    if (!v) return;
-    state.weekData.incomes[i] += v;
-    save();
-};
-
-window.addExpense = i => {
-    const v = Number(document.getElementById(`expense${i}`).value);
-    if (!v) return;
-    state.weekData.expenses[i] += v;
-    save();
-};
-
-window.addExtra = () => {
-    const r = extraReason.value.trim();
-    const a = Number(extraAmount.value);
-    if (!r || !a) return;
-    state.extras[r] = (state.extras[r] || 0) + a;
-    save();
-    extraReason.value = "";
-    extraAmount.value = "";
-};
-
-window.analyze = () => {
-    const income = state.weekData.incomes.reduce((a,b)=>a+b,0);
-    const expense = state.weekData.expenses.reduce((a,b)=>a+b,0);
-    const profit = income - expense;
-
-    const dailyProfit = state.weekData.incomes.map((v,i)=>v-state.weekData.expenses[i]);
-    const best = dayNames[dailyProfit.indexOf(Math.max(...dailyProfit))];
-    const worst = dayNames[dailyProfit.indexOf(Math.min(...dailyProfit))];
-
-    let extrasHTML = "";
-    let extrasTotal = 0;
-
-    for (let k in state.extras) {
-        extrasHTML += `<li><span>${k}</span><span>${state.extras[k]} €</span></li>`;
-        extrasTotal += state.extras[k];
-    }
-
-    document.getElementById("result").innerHTML = `
-        <div class="report">
-            <h3>Weekly Report</h3>
-            <div class="summary">
-                <div class="card income">Income<br>${income} €</div>
-                <div class="card expense">Expenses<br>${expense} €</div>
-                <div class="card profit">Profit<br>${profit} €</div>
+        <!-- Features Section -->
+        <section class="container" style="padding: 60px 20px;">
+            <h2 class="text-center mb-4">Powerful Features</h2>
+            <p class="text-center mb-5" style="max-width: 600px; margin: 0 auto 40px;">Everything you need to manage your finances effectively</p>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Income Tracking</h3>
+                    <p class="feature-description">Track your daily income across all seven days of the week with ease.</p>
+                </div>
+                
+                <div class="feature-card animate-fade-in animate-delay-1">
+                    <div class="feature-icon">💸</div>
+                    <h3 class="feature-title">Expense Management</h3>
+                    <p class="feature-description">Monitor your spending habits and identify areas to save money.</p>
+                </div>
+                
+                <div class="feature-card animate-fade-in animate-delay-2">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Weekly Analysis</h3>
+                    <p class="feature-description">Get detailed reports and insights about your financial performance.</p>
+                </div>
+                
+                <div class="feature-card animate-fade-in animate-delay-3">
+                    <div class="feature-icon">⭐</div>
+                    <h3 class="feature-title">Best/Worst Days</h3>
+                    <p class="feature-description">Identify your most and least profitable days to optimize your budget.</p>
+                </div>
+                
+                <div class="feature-card animate-fade-in animate-delay-4">
+                    <div class="feature-icon">💾</div>
+                    <h3 class="feature-title">Auto-Save Feature</h3>
+                    <p class="feature-description">Your data is automatically saved to your browser. Never lose track!</p>
+                </div>
+                
+                <div class="feature-card animate-fade-in">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Responsive Design</h3>
+                    <p class="feature-description">Access your financial data on any device, anywhere, anytime.</p>
+                </div>
             </div>
-            <div class="extras">
-                <h4>Extra Expenses</h4>
-                <ul>${extrasHTML || "<li>No extra expenses</li>"}</ul>
-                <strong>Total Extras: ${extrasTotal} €</strong>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="container" style="padding: 0 20px 60px;">
+            <div class="card" style="background: linear-gradient(135deg, hsl(217.2, 32.6%, 17.5%), hsl(220, 34.4%, 49.6%)); color: white;">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
+                    <div>
+                        <h2 style="color: rgb(255, 255, 255); margin-bottom: 8px;">Ready to Start?</h2>
+                        <p style="color: rgba(255,255,255,0.9); margin: 0;">Begin tracking your finances today and take control of your money.</p>
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <a href="pages/operating.html" class="btn btn-lg" style="background: rgb(6, 37, 91); color: var(--primary);">
+                            📝 Enter Data
+                        </a>
+                        <a href="pages/report.html" class="btn btn-lg btn-outline" style="border-color: white; color: white;">
+                            📊 View Reports
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p>⭐ Best Day: <b>${best}</b><br>⚠ Worst Day: <b>${worst}</b></p>
-        </div>
-    `;
-};
+        </section>
 
-window.endWeek = () => {
-    analyze();
-    localStorage.clear();
-    location.reload();
-};
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FinTrack</h4>
+                    <p>Your trusted companion for financial management and analysis.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/operating.html">Operating</a></li>
+                        <li><a href="pages/report.html">Reports</a></li>
+                        <li><a href="pages/about.html">About</a></li>
+                        <li><a href="pages/contacts.html">Contacts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul class="footer-links">
+                        <li>Income Tracking</li>
+                        <li>Expense Management</li>
+                        <li>Weekly Reports</li>
+                        <li>Auto-Save</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">How to Use</a></li>
+                        <li><a href="contacts.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Financial Analysis & Management. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
 
-function save() {
-    localStorage.setItem("weekData", JSON.stringify(state.weekData));
-    localStorage.setItem("extrasData", JSON.stringify(state.extras));
-}
-})();
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-</script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        // Load saved data and display stats
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = Storage.getWeekData();
+            const extras = Storage.getExtras();
+            
+            const income = savedData.incomes.reduce((a, b) => a + b, 0);
+            const expense = savedData.expenses.reduce((a, b) => a + b, 0);
+            const extrasTotal = Object.values(extras).reduce((a, b) => a + b, 0);
+            const profit = income - (expense + extrasTotal);
+            
+            document.getElementById('totalIncome').textContent = `€${income.toFixed(2)}`;
+            document.getElementById('totalExpense').textContent = `€${(expense + extrasTotal).toFixed(2)}`;
+            document.getElementById('totalProfit').textContent = `€${profit.toFixed(2)}`;
+        });
+    </script>
 </body>
 </html>
-

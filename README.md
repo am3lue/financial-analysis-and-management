@@ -14,39 +14,39 @@
 
 ---
 
-## ⚙️ How It Works
+## 📁 File Structure
 
-1. **Daily Inputs**  
-   Enter your income and expenses for each day (Monday to Sunday) and click **Add** to save.  
-
-2. **Extra Expenses**  
-   Enter the reason and amount for any additional costs and click **Add**.  
-
-3. **Weekly Analysis**  
-   Click **Weekly Analysis** to generate a full report showing totals, profit, best/worst days, and extra expenses summary.  
-
-4. **End Week**  
-   Click **End Week** to reset weekly data for a new cycle. The last report remains visible until the page reloads.
+```
+financial-analysis-and-management/
+├── index.html          (Landing page)
+├── pages/
+│   ├── operating.html  (Main input & tracking)
+│   ├── report.html     (Analytics dashboard)
+│   ├── about.html      (User guide)
+│   └── contacts.html   (Support info)
+├── css/
+│   ├── styles.css      (Main theme & layout)
+│   └── report.css      (Report-specific styles)
+├── js/
+│   ├── app.js          (Core logic)
+│   ├── storage.js      (Data persistence)
+│   ├── charts.js       (Charting library)
+│   ├── report.js       (Report generation)
+│   └── theme.js        (Dark mode manager)
+├── docs/               (Project documentation)
+└── images/             (Assets)
+```
 
 ---
 
-## 📊 User Guide
+## ✨ Key Features
 
-1. Open the application in any modern browser (Chrome, Firefox, Edge).  
-2. Enter your daily income and expenses for each day.  
-3. Add extra expenses if needed.  
-4. Click **Weekly Analysis** to view the report.  
-5. Use **End Week** to start a new week.  
-
----
-
-## 🚀 Getting Started
-
-1. Download or clone the project.  
-2. Open `index.html` in a modern browser.  
-3. Start tracking your finances immediately.  
-
-*No installation or backend required.*
+- **Daily Tracking**: Intuitive input for income and expenses.
+- **Extra Expenses**: Flexible category management for irregular costs.
+- **Visual Reports**: Interactive bar and pie charts for financial analysis.
+- **Dark Mode**: Built-in theme switcher for visual comfort.
+- **Auto-Save**: Automatic local storage persistence.
+- **Responsive Design**: Mobile-friendly layout for all devices.
 
 ---
 
@@ -54,8 +54,7 @@
 
 - Export reports to Excel or PDF.  
 - Include monthly and annual summaries.  
-- Add charts and graphs for visual analysis.  
-- Optional dark mode for better readability.
+- Multi-currency support.
 
 ---
 

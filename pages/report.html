@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Financial Analysis & Management</title>
+    <link rel="icon" href="../images/images.svg">
+    <link rel="stylesheet" href="../css/report.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">📊</span>
+                    <span>FinTrack</span>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="operating.html" class="nav-link">Operating</a></li>
+                    <li><a href="report.html" class="nav-link active">Reports</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contacts.html" class="nav-link">Contacts</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container" style="padding: 40px 20px;">
+            <h1 class="text-center mb-2">📊 Financial Reports</h1>
+            <p class="text-center mb-4">Detailed analysis of your weekly financial performance</p>
+
+            <!-- Summary Cards -->
+            <div class="summary-grid">
+                <div class="summary-card income animate-fade-in">
+                    <div class="summary-icon">💰</div>
+                    <div class="summary-value" id="totalIncome">€0</div>
+                    <div class="summary-label">Total Income</div>
+                </div>
+                <div class="summary-card expense animate-fade-in animate-delay-1">
+                    <div class="summary-icon">💸</div>
+                    <div class="summary-value" id="totalExpenses">€0</div>
+                    <div class="summary-label">Total Expenses</div>
+                </div>
+                <div class="summary-card profit animate-fade-in animate-delay-2">
+                    <div class="summary-icon">📈</div>
+                    <div class="summary-value" id="netProfit">€0</div>
+                    <div class="summary-label">Net Profit</div>
+                </div>
+                <div class="summary-card extra animate-fade-in animate-delay-3">
+                    <div class="summary-icon">📋</div>
+                    <div class="summary-value" id="totalExtras">€0</div>
+                    <div class="summary-label">Extra Expenses</div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="chart-container animate-fade-in">
+                <h3 style="margin-bottom: 20px;">📈 Income vs Expenses by Day</h3>
+                <div class="chart-wrapper">
+                    <canvas id="dailyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Pie Chart -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <div class="chart-container animate-fade-in">
+                    <h3 style="margin-bottom: 20px;">💰 Income Distribution</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="incomePieChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container animate-fade-in">
+                    <h3 style="margin-bottom: 20px;">💸 Expense Distribution</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="expensePieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Breakdown -->
+            <div class="card animate-fade-in" style="margin-bottom: 30px;">
+                <h3 style="margin-bottom: 20px;">📅 Daily Breakdown</h3>
+                <div id="dailyBreakdown">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Best/Worst Days -->
+            <div class="days-comparison animate-fade-in" style="margin-bottom: 30px;">
+                <div class="day-highlight best">
+                    <div class="day-highlight-icon">⭐</div>
+                    <div class="day-highlight-label">Best Performing Day</div>
+                    <div class="day-highlight-name" id="bestDayName">-</div>
+                    <div style="font-size: 0.875rem; color: var(--success); margin-top: 4px;" id="bestDayAmount">€0</div>
+                </div>
+                <div class="day-highlight worst">
+                    <div class="day-highlight-icon">⚠️</div>
+                    <div class="day-highlight-label">Worst Performing Day</div>
+                    <div class="day-highlight-name" id="worstDayName">-</div>
+                    <div style="font-size: 0.875rem; color: var(--danger); margin-top: 4px;" id="worstDayAmount">€0</div>
+                </div>
+            </div>
+
+            <!-- Extra Expenses Section -->
+            <div class="card animate-fade-in" id="extrasCard" style="margin-bottom: 30px;">
+                <h3 style="margin-bottom: 20px;">📋 Extra Expenses Breakdown</h3>
+                <div id="extrasBreakdown">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div id="noExtrasMsg" style="text-align: center; padding: 30px; color: var(--text-light);">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 8px;">🎉</span>
+                    No extra expenses recorded this week!
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button onclick="generateReport()" class="btn btn-primary btn-lg">
+                    🔄 Refresh Report
+                </button>
+                <button onclick="printReport()" class="btn btn-secondary btn-lg">
+                    🖨️ Print Report
+                </button>
+                <button onclick="window.exportData()" class="btn btn-outline btn-lg">
+                    💾 Export Data
+                </button>
+            </div>
+
+            <!-- Weekly Trend -->
+            <div class="card animate-fade-in" style="margin-top: 30px;">
+                <h3 style="margin-bottom: 20px;">📊 Weekly Summary</h3>
+                <div id="weeklySummary">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-bottom" style="border: none; margin: 0; padding: 20px;">
+                <p>&copy; 2024 Financial Analysis & Management. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/charts.js"></script>
+    <script src="../js/report.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts - Financial Analysis & Management</title>
+    <link rel="icon" href="../images/images.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">📊</span>
+                    <span>FinTrack</span>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="operating.html" class="nav-link">Operating</a></li>
+                    <li><a href="report.html" class="nav-link">Reports</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contacts.html" class="nav-link active">Contacts</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container" style="padding: 40px 20px;">
+            <h1 class="text-center mb-2">Contact Us</h1>
+            <p class="text-center mb-5" style="max-width: 600px; margin: 0 auto;">Get in touch with our team. We're here to help!</p>
+
+            <!-- Contact Cards Grid -->
+            <div class="contact-grid" style="margin-bottom: 40px;">
+                <!-- Email Contact -->
+                <div class="contact-card animate-fade-in">
+                    <div class="contact-icon">📧</div>
+                    <h3 class="contact-title">Codebase Email</h3>
+                    <div class="contact-value">codesphere08@gmail.com</div>
+                    <p class="contact-description">For technical inquiries, bug reports, and feature requests</p>
+                </div>
+
+                <!-- Support -->
+                <div class="contact-card animate-fade-in animate-delay-1">
+                    <div class="contact-icon">💬</div>
+                    <h3 class="contact-title">Customer Support</h3>
+                    <div class="contact-value">codesphere08@gmail.com</div>
+                    <p class="contact-description">Questions about using the app? We're here to help!</p>
+                </div>
+
+                <!-- General Inquiries -->
+                <div class="contact-card animate-fade-in animate-delay-2">
+                    <div class="contact-icon">🌐</div>
+                    <h3 class="contact-title">General Inquiries</h3>
+                    <div class="contact-value">codesphere08@gmail.com</div>
+                    <p class="contact-description">For partnerships and general questions</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form animate-fade-in">
+                <h3 style="margin-bottom: 24px; text-align: center;">📝 Send us a Message</h3>
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-input" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <select class="form-input" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input" placeholder="Tell us how we can help you..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                        🚀 Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="info-grid animate-fade-in">
+                <!-- Response Time -->
+                <div class="card">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <span style="font-size: 2rem;">⏱️</span>
+                        <h4 style="margin: 0;">Response Time</h4>
+                    </div>
+                    <p style="margin: 0; color: var(--text-secondary);">We typically respond to all inquiries within 24-48 business hours. For urgent matters, please mark your message as important.</p>
+                </div>
+
+                <!-- Location -->
+                <div class="card">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <span style="font-size: 2rem;">📍</span>
+                        <h4 style="margin: 0;">Location</h4>
+                    </div>
+                    <p style="margin: 0; color: var(--text-secondary);">Our team is distributed globally, ensuring 24/7 coverage and support for users around the world.</p>
+                </div>
+
+                <!-- Community -->
+                <div class="card">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <span style="font-size: 2rem;">👥</span>
+                        <h4 style="margin: 0;">Community</h4>
+                    </div>
+                    <p style="margin: 0; color: var(--text-secondary);">Join our growing community of users. Share tips, ask questions, and help others manage their finances better.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="card animate-fade-in" style="margin-top: 40px;">
+                <h3 style="margin-bottom: 24px;">❓ Frequently Asked Questions</h3>
+                
+                <div style="margin-bottom: 20px;">
+                    <h5 style="color: var(--primary); margin-bottom: 8px;">How quickly will I receive a response?</h5>
+                    <p style="margin: 0; color: var(--text-secondary);">We aim to respond to all messages within 24 hours. During peak times, it may take up to 48 hours.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h5 style="color: var(--primary); margin-bottom: 8px;">Can I report a bug directly?</h5>
+                    <p style="margin: 0; color: var(--text-secondary);">Yes! Use the contact form above and select "Bug Report" as the subject. Please include steps to reproduce the issue and your browser/device information.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h5 style="color: var(--primary); margin-bottom: 8px;">How can I request a new feature?</h5>
+                    <p style="margin: 0; color: var(--text-secondary);">We love hearing your ideas! Select "Feature Request" in the form and describe the feature you'd like to see. We review all requests regularly.</p>
+                </div>
+                
+                <div>
+                    <h5 style="color: var(--primary); margin-bottom: 8px;">Is my contact information secure?</h5>
+                    <p style="margin: 0; color: var(--text-secondary);">Absolutely. We never share your contact information with third parties and use industry-standard security measures to protect your data.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FinTrack</h4>
+                    <p>Your trusted companion for financial management and analysis.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="operating.html">Operating</a></li>
+                        <li><a href="report.html">Reports</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul class="footer-links">
+                        <li>Income Tracking</li>
+                        <li>Expense Management</li>
+                        <li>Weekly Reports</li>
+                        <li>Auto-Save</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">How to Use</a></li>
+                        <li><a href="contacts.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Financial Analysis & Management. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Simulate form submission
+            const form = event.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '⏳ Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                if (typeof showToast === 'function') {
+                    showToast('Message sent successfully! We\'ll get back to you soon.', 'success');
+                } else {
+                    alert('Message sent successfully! We\'ll get back to you soon.');
+                }
+                form.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

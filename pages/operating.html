@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operating - Financial Analysis & Management</title>
+    <link rel="icon" href="../images/images.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">📊</span>
+                    <span>FinTrack</span>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="operating.html" class="nav-link active">Operating</a></li>
+                    <li><a href="report.html" class="nav-link">Reports</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contacts.html" class="nav-link">Contacts</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container" style="padding: 40px 20px;">
+            <h1 class="text-center mb-2">Weekly Financial Tracker</h1>
+            <p class="text-center mb-4">Enter your daily income and expenses below. Data is automatically saved.</p>
+            
+            <!-- Live Summary -->
+            <div class="summary-grid">
+                <div class="summary-card income">
+                    <div class="summary-icon">💰</div>
+                    <div class="summary-value" id="liveIncome">€0.00</div>
+                    <div class="summary-label">Total Income</div>
+                </div>
+                <div class="summary-card expense">
+                    <div class="summary-icon">💸</div>
+                    <div class="summary-value" id="liveExpenses">€0.00</div>
+                    <div class="summary-label">Regular Expenses</div>
+                </div>
+                <div class="summary-card extra">
+                    <div class="summary-icon">📋</div>
+                    <div class="summary-value" id="liveExtras">€0.00</div>
+                    <div class="summary-label">Extra Expenses</div>
+                </div>
+                <div class="summary-card profit">
+                    <div class="summary-icon">📈</div>
+                    <div class="summary-value" id="liveProfit">€0.00</div>
+                    <div class="summary-label">Net Profit</div>
+                </div>
+            </div>
+
+            <!-- Day Cards -->
+            <div id="daysContainer">
+                <!-- Day cards will be rendered here by JavaScript -->
+            </div>
+
+            <!-- Extra Expenses Section -->
+            <div class="extra-section">
+                <div class="extra-header">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <div>
+                            <h3 style="margin: 0;">Extra Expenses</h3>
+                            <p style="margin: 4px 0 0; font-size: 0.875rem; color: var(--text-secondary);">Add any additional expenses</p>
+                        </div>
+                    </div>
+                    <span class="badge" id="extraCount" style="background: var(--danger-light); color: var(--danger); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 0.875rem;">0 items</span>
+                </div>
+                
+                <div class="extra-form">
+                    <input type="text" id="extraReason" placeholder="Expense reason (e.g., Grocery, Transport)" class="form-input">
+                    <input type="number" id="extraAmount" placeholder="Amount (€)" class="form-input" min="0" step="0.01">
+                    <button onclick="addExtra()" class="btn btn-primary">➕ Add Expense</button>
+                </div>
+                
+                <ul class="extra-list" id="extraList">
+                    <!-- Extra items will be rendered here -->
+                </ul>
+                
+                <div id="noExtras" style="text-align: center; padding: 30px; color: var(--text-light);">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 8px;">📭</span>
+                    No extra expenses added yet
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button onclick="analyze()" class="btn btn-primary btn-lg">
+                    📊 Generate Weekly Report
+                </button>
+                <button onclick="endWeek()" class="btn btn-secondary btn-lg">
+                    🔄 End Week & Reset
+                </button>
+                <button onclick="clearAllData()" class="btn btn-danger btn-lg">
+                    🗑️ Clear All Data
+                </button>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="card card-tips mt-4">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span style="font-size: 1.5rem;">💡</span>
+                    <div>
+                        <h4 style="margin-bottom: 8px;">Quick Tips</h4>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>Enter amounts in the input fields and click "Add" to record each entry</li>
+                            <li>Your data is automatically saved every time you make a change</li>
+                            <li>Use "End Week" to generate a report and start fresh for next week</li>
+                            <li>All data persists even if you close the browser</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-bottom" style="border: none; margin: 0; padding: 20px;">
+                <p>&copy; 2024 Financial Analysis & Management. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/theme.js"></script>
+</body>
+</html>
